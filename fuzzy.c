@@ -9,7 +9,7 @@ float min(float a,float b)
 		return a;
 
 }
-float grade(float e,float ce)
+float InferenceEngine(float e,float ce)
 {
 	//P,P
 	float M1=(1.0/8.0)*(e-4.0)+1.0;
@@ -61,7 +61,7 @@ int main()
 	{
 		for(int j=0;j<7;j++)
 		{
-			printf(" %d ",(int)grade(e[i],ce[j]));
+			printf(" %d ",(int)InferenceEngine(e[i],ce[j]));
 		}
 		printf(" \n ");
 	}
