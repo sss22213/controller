@@ -14,15 +14,34 @@ float grade(float e,float ce)
 	//P,P
 	float M1=(1.0/8.0)*(e-4.0)+1.0;
         float M2=(1.0/8.0)*(ce-4.0)+1.0;
+	if(e>=4)M1=1;
+	if(e<=-4)M1=0;
+	if(ce>=4)M2=1;
+	if(ce<=-4)M2=0;
 	//P,N
 	float M3=(1.0/8.0)*(e-4.0)+1.0;
         float M4=(-1.0/8.0)*(ce+4.0)+1.0;
+	if(e>=4)M3=1;
+        if(e<=-4)M3=0;
+        if(ce>=4)M4=0;
+        if(ce<=-4)M4=1;
+
 	//N,P
 	float M5=(-1.0/8.0)*(e+4.0)+1.0;
         float M6=(1.0/8.0)*(ce-4.0)+1.0;
+	if(e>=4)M5=0;
+        if(e<=-4)M5=1;
+        if(ce>=4)M6=1;
+        if(ce<=-4)M6=0;
+
 	//N,N
 	float M7=(-1.0/8.0)*(e+4.0)+1.0;
         float M8=(-1.0/8.0)*(ce+4.0)+1.0;
+	if(e>=4)M7=0;
+        if(e<=-4)M7=1;
+        if(ce>=4)M8=0;
+        if(ce<=-4)M8=1;
+
 	//Min 4 parameter	
 	float R1=min(M1,M2);
 	float R2=min(M3,M4);
@@ -42,7 +61,7 @@ int main()
 	{
 		for(int j=0;j<7;j++)
 		{
-			printf(" %e ",grade(e[i],ce[j]));
+			printf(" %d ",(int)grade(e[i],ce[j]));
 		}
 		printf(" \n ");
 	}
