@@ -6,7 +6,7 @@ fuzzy *new_fuzzy(float upper1,float lowwer1)
 	if(obj==NULL)
 	{
 		perror("memory leak");
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	obj->upper=upper1;
 	obj->lowwer=lowwer1;
@@ -19,6 +19,11 @@ fuzzy *new_fuzzy(float upper1,float lowwer1)
 //posative Slope
 float posative_func(fuzzy *argu,equ *equ_arg,float parameter)
 {
+	if(argu==NULL || equ_arg==NULL)
+	{
+		perror("fuzzy or equ is pointer to NULL");
+		exit(EXIT_FAILURE);		
+	}
 	if(parameter>(argu->upper))return 1.0; 	
 	else if (parameter<(argu->lowwer))return 0;
 	else return (equ_arg->a)*parameter+(equ_arg->b);
@@ -27,7 +32,12 @@ float posative_func(fuzzy *argu,equ *equ_arg,float parameter)
 //negative Slope
 float negative_func(fuzzy *argu,equ *equ_arg,float parameter)
 {
-        if(parameter>(argu->upper))return 0;
+ 	if(argu==NULL || equ_arg==NULL)
+        {
+                perror("fuzzy or equ is pointer to NULL");
+                exit(EXIT_FAILURE);
+        }
+	if(parameter>(argu->upper))return 0;
         else if (parameter<(argu->lowwer))return 1.0;
         else return (equ_arg->a)*parameter+(equ_arg->b);
 }
